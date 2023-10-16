@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+    
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+
+    <title>NeighborGood Interest Form</title>
+
+<style>
+
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: "Poppins", Arial, Helvetica, sans-serif ;
+    background-color: #f6e9de;
+    /*background-color: #cbf3f0;*/
+}
+
+
+
+/*---Nav---*/
+
+nav {
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+nav a img {
+    width: max-content;
+}
+nav a {
+    text-decoration: none;
+    color: #000;
+    padding: 15px;
+    display: flex;
+  }
+
+.navbar-right{
+    text-align: right;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-right a:hover {
+    background-color: #faba6d;
+    color: #000;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #18181869, inset 2px 2px 10px #ffffffb0;
+    transition: all .3s ease-in-out;
+    
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  nav a {
+    padding: 10px; /* Adjust padding for mobile */
+  }
+
+  .navbar-right {
+    margin-top: 10px; /* Add spacing between logo and links */
+    text-align: left; /* Align links to the left */
+  }
+}
+
+
+/* ---- Form ---- */
+
+.onboarding {
+    border-top: solid 1px rgb(213, 213, 213);
+    
+  }
+  
+  .onboarding form {
+    display: flex;
+    padding-left: 80px;
+    margin:0 30px ;
+    
+  }
+  
+  .onboarding form section {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 35%;
+    text-align: start;
+  }
+  
+  .onboarding form input {
+    padding: 15px 30px;
+    margin: 10px 0;
+    font-size: 15px;
+    border: solid 2px rgb(251, 232, 217);
+    background: #dec4b5;
+    border-radius: 10px;
+  }
+  
+  .onboarding form label {
+    margin: 10px 0;
+  }
+  
+  
+  .onboarding form input::-webkit-outer-spin-button,
+  .onboarding form input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Make the form responsive */
+@media (max-width: 576px) {
+  .navbar-right a {
+    padding-bottom: 10px;
+  }
+
+  .onboarding form {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .onboarding form section {
+    width: 100%;
+  }
+}
+
+/* Make the form inputs, labels, sections, and radio buttons responsive */
+@media (max-width: 576px) {
+
+   body{
+    padding: 0px;
+    margin: 0px;
+
+   }
+
+  .onboarding form input,
+  .onboarding form label,
+  .onboarding form section,
+  .onboarding input[type="radio"] {
+    font-size: 14px;
+  }
+
+  .radio {
+    width: 8px;
+    height: 8px;
+  }
+
+  .radio::before {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+
+/*Select box*/
+  .onboarding select {
+    padding: 15px 30px;
+    margin: 10px 0;
+    font-size: 15px;
+    border: solid 2px rgb(251, 232, 217);
+    border-radius: 10px;
+    background: #dec4b5;
+
+  }
+
+  /*Radio*/
+  .onboarding input[type="radio"]{
+    position: absolute;
+    opacity: 0;
+  }
+ 
+  .radio {
+    position: relative;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid rgb(251, 232, 217);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    transform: translateZ(-25px);
+    transition: all 0.3s ease-in-out;
+    margin-right: 10px;
+  }
+
+  .radio::before {
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    top: 5px;
+    left: 5px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .radio-button input[type="radio"]:checked + .radio {
+    border-color: rgb(86, 37, 4);
+    transform: translateZ(-25px);
+    background-color: #fff;
+  }
+  
+  .radio-button input[type="radio"]:checked + .radio::before {
+    opacity: 1;
+  }
+
+
+  /*CHeckBOx1*/
+  .checkbox{
+    display: flex;
+    flex-direction: row;
+    margin-right: 20px;
+    font-weight: bold;
+    
+  }
+  
+  .checkbox label{
+    padding-top: 8px;
+    padding-left: 10px;
+    color: #242424f3;
+  }
+  
+  .enableRunning {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    appearance: none;
+    background-color: #dec4b5;
+    transition: all .3s;
+   }
+   
+   .enableRunning::before {
+    content: '';
+    position: absolute;
+    border: solid #242424f3;
+    display: block;
+    width: .3em;
+    height: .6em;
+    border-width: 0 .2em .2em 0;
+    z-index: 1;
+    opacity: 0;
+    right: calc(50% - .3em);
+    top: calc(50% - .6em);
+    transform: rotate(0deg);
+    transition: all .3s;
+    transform-origin: center center;
+   }
+   
+   .enableRunning:checked {
+    animation: a .3s ease-in forwards;
+    background-color: #faba6d;
+   }
+   
+   .enableRunning:checked::before {
+    opacity: 1;
+    transform: rotate(405deg);
+   }
+   
+   @keyframes a {
+    0% {
+     opacity: 1;
+     transform: scale(1) rotateY(0deg);
+    }
+   
+    50% {
+     opacity: 0;
+     transform: scale(.8) rotateY(180deg);
+    }
+   
+    100% {
+     opacity: 1;
+     transform: scale(1) rotateY(360deg);
+    }
+   }
+
+
+  /*CheckBox2*/
+  /*<div class="choice">
+  <input type="checkbox" name="cb" id="cb-47" />
+  <label for="cb-47">Check this</label>
+</div>*/
+
+  .choice input[type="checkbox"] {
+    display: none;
+    visibility: hidden;
+  }
+
+  .choice label {
+    position: relative;
+    padding-left: 2em;
+    padding-right: 1em;
+    line-height: 2;
+    cursor: pointer;
+    display: inline-flex;
+  }
+
+  .choice label:before {
+    box-sizing: border-box;
+    content: " ";
+    position: absolute;
+    top: 0.3em;
+    left: 0;
+    display: block;
+    width: 1.4em;
+    height: 1.4em;
+    border: 2px solid #dec4b5;
+    border-radius: 6px;
+    z-index: -1;
+  }
+
+  .choice input[type=checkbox]:checked + label {
+    padding-left: 1em;
+    color: #0f5229;
+  }
+  .choice input[type=checkbox]:checked + label:before {
+    top: 0;
+    width: 100%;
+    height: 2em;
+    background: #faba6d;
+    
+  }
+
+  .choice label,
+  .choice label::before {
+    transition: 0.25s all ease;
+  }
+
+  /*Input File*/
+
+
+  input[type="file"]::file-selector-button {
+    border-radius: 4px;
+    height: 40px;
+    cursor: pointer;
+    background-color: #dec4b5;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+    transition: background-color 200ms;
+  }
+  
+  /* file upload button hover state */
+  input[type="file"]::file-selector-button:hover {
+    background-color: #faba6d;
+  }
+  
+  /* file upload button active state */
+  input[type="file"]::file-selector-button:active {
+    background-color: #e5e7eb;
+  }
+
+/*Submit button*/
+button {
+  width: 300px;
+  height: 50px;
+  position: relative;
+  padding: 13px 35px;
+  background: #dec4b5;
+  font-size: 17px;
+  font-weight: 900;
+  color: #181818;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px #18181869, inset 2px 2px 10px #ffffffb0;
+  transition: all .3s ease-in-out;
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  margin-bottom: 30px;
+}
+
+button p {
+  margin:0;
+}
+
+button:hover {
+  padding: 13px 25px;
+  border-radius: 8px 8px 24px 24px;
+  background: #faba6d;
+}
+
+
+/* ---- Dashboard ---- */
+
+.profiles {
+  padding: 40px;
+  display: flex;
+  padding: 20px;
+}
+
+.card {
+  width: 190px;
+  margin: 30px;
+  height: 254px;
+  background: #f5f5f5;
+  padding: 2rem 1.5rem;
+  transition: box-shadow .3s ease, transform .2s ease;
+ }
+ 
+ .card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform .2s ease, opacity .2s ease;
+ }
+ 
+ /*Image*/
+ .card-avatar {
+  --size: 60px;
+  background: linear-gradient(to top, #f1e1c1 0%, #fcbc97 100%);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  transition: transform .2s ease;
+  margin-bottom: 1rem;
+ }
+ 
+ 
+ /*Card footer*/
+ 
+ 
+ /*Text*/
+ .card-title {
+  color: #333;
+  font-size: 1.5em;
+  font-weight: 600;
+  line-height: 2rem;
+ }
+ 
+ .card-subtitle {
+  color: #859ba8;
+  font-size: 0.8em;
+ }
+ 
+ /*Hover*/
+ .card:hover {
+  box-shadow: 0 8px 50px #23232333;
+ }
+ 
+ /*.card:hover .card-info {
+  transform: translateY(-5%);
+ }
+ 
+ .card:hover .card-social {
+  transform: translateY(100%);
+  opacity: 1;
+ }
+ 
+ .card-social__item svg:hover {
+  fill: #232323;
+  transform: scale(1.1);
+ }*/
+ 
+ .card-avatar:hover {
+  transform: scale(1.1);
+ }
+  
+ .card__btn {
+  margin-top: 15px;
+  width: 100px;
+  height: 25px;
+  border: 2px solid var(--main-color);
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--main-color);
+  background: #dec4b5;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  padding-bottom: 20px;
+}
+
+.card__btn-solid {
+  background: #dec4b5;
+  color: var(--bg-color);
+}
+
+.card__btn:hover {
+  background: #faba6d;
+  color: var(--bg-color);
+}
+
+.card__btn-solid:hover {
+  background: #faba6d;
+  color: var(--main-color);
+}
+
+
+/* #similarUsers{
+  border: 1px solid black;
+  width: 200px;
+  height: auto;
+  font-size: 20px;
+  font-family: "Poppins", "Arial Black",  sans-serif;
+  color: black;
+  align-items: center;
+  padding: 30px 40px 50px 50px;
+  
+  margin: auto;
+  background: rgb(33,36,0);
+background-color: white;
+box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+border-radius: 57px 57px 57px 57px;
+} */
+
+/* ---- Chat ---- */
+
+main{
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  overflow: hidden;
+  background-color: #dec4b5;
+  padding: 30px;
+  border-radius: 10px;
+  height:400px;
+  width: 800px;
+}
+
+/* Popup styles
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+} */
+/* CSS for the popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.popup-content {
+    position: relative;
+    background-color: #fff;
+    margin: 20% auto;
+    padding: 20px;
+    width: 60%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#similarUsersDetails{
+    display: flex;
+    flex-wrap: nowrap; /* Prevent cards from wrapping to the next line */
+    overflow-x: auto;
+}
+
+
+
+
+</style>
+
+</head>
+
+<body  onload="getLocation()">
+ 
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="index.html" class="navbar-logo"> 
+              <!-- <img src="./src/logot.png" alt="Neighborgood" width="100%" height="50"> -->
+              <img src="{{ url_for('static', filename='logot.png') }}" alt="Neighborgood" width="100%" height="50">
+
+            </a>
+        </div>
+        <div class = "navbar-right">
+            <a href="./index.html" class="navbar-link">Home</a>
+            <a href="#services" class="navbar-link">Services</a>
+            <a href="./events.html" class="navbar-link">Events</a>
+        </div>
+    </nav>
+    
+    <h2 style="text-align: center; color: rgb(86, 37, 4) ;">NeighborGood Interest Form</h2>
+
+    <div class="onboarding">
+
+        <form action="/form" method="POST">
+
+            <section>
+                <label for="person">Name</label>
+                <input
+                    id="person"
+                    type='text'
+                    name="person"
+                    placeholder="Name"
+                    required=true
+                />
+    
+                <label for="age">Age</label>
+                <input
+                    id="age"
+                    type='number'
+                    name="age"
+                    required={true}
+                />
+    
+                <label for="email">Email</label>
+                <input
+                    id="email"
+                    type='text'
+                    name="email"
+                    placeholder="abc@xyz.com"
+                    required={true}
+                />
+    
+                <label htmlFor="address">Zip-code</label>
+                <input
+                    id="address"
+                    type='number'
+                    name="address"
+                    type="number"
+                />
+    
+                <label for="country">Country Code:</label>
+                <select class="select" id="country" name="country">
+                <option value="+1">+1 (USA)</option>
+                <option value="+44">+44 (UK)</option>
+                <option value="+91">+91 (India)</option>
+                <!-- Add more country options as needed -->
+                </select>
+    
+                <label for="mobile">Mobile Number:</label>
+                <input id="mobile" type="tel" name="mobile" placeholder="Mobile Number" required>
+    
+                <label>Share my details with similar users?</label>
+                <label class="radio-button" for="sharePreferenceYes"><input type="radio" id="sharePreferenceYes" name="sharePreference" value="yes">
+                    <span class="radio"></span>Yes</label>
+                <label class="radio-button" for="sharePreferenceNo"><input type="radio" id="sharePreferenceNo" name="sharePreference" value="no">
+                    <span class="radio"></span>No</label>
+                
+                <hr>
+                <h3 style="color:rgb(86, 37, 4) ;"><b>Interested Activities:</b></h3>
+    
+
+                <div class="checkbox">
+                <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                <label for="enableRunning">Walking </label>
+                </div>
+                <div class="choice">
+                    <input id="slow" type="checkbox" name="walking" value="slow"/>
+                    <label for="slow">Slow</label>
+                    <input id="moderate" type="checkbox" name="walking" value="moderate"/>
+                    <label for="moderate">Moderate</label>
+                    <input id="fast" type="checkbox" name="walking" value="fast"/>
+                    <label for="fast">Fast</label>
+                </div>
+
+                <div class="checkbox">
+                    <input class="enableRunning" type="checkbox" id="enableRunning" onchange="toggleintrest()" />
+                    <label for="enableRunning">Stulfaft Park</label>
+                </div>
+                <div class="choice">
+                    <input id="slowpark" type="checkbox" name="walking" value="slow"/>
+                    <label for="slowpark">Slow</label>
+                    <input id="moderatepark" type="checkbox" name="walking" value="moderate"/>
+                    <label for="moderatepark">Moderate</label>
+                    <input id="fastpark" type="checkbox" name="walking" value="fast"/>
+                    <label for="fastpark">Fast</label>
+                </div>
+
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Running </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="runnings" name="running" value="slow">
+                    <label for="runnings">Slow(Jogging)</label> <br>
+                    <input type="checkbox" id="runningm" name="running" value="moderate">
+                    <label for="runningm">Moderate</label> <br>
+                    <input type="checkbox" id="runningf" name="running" value="fast">
+                    <label for="runningf">Fast</label> <br>
+                </div>
+                <!--
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Bicycling </label>
+                </div> -->
+    
+                <!-- <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Dog Walking </label>
+                </div> -->
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Gardening </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="flowers" name="gardening" value="flowers">
+                    <label for="flowers">Flowers/Landscape</label> <br>
+                    <input type="checkbox" id="fruits" name="gardening" value="fruits">
+                    <label for="fruits">Fruits/Veggies</label> <br>
+                    <input type="checkbox" id="both" name="gardening" value="both">
+                    <label for="both">Both</label>
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Swimming </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="mybackyard" name="swim" value="mybackyard">
+                    <label for="mybackyard">Backyard</label> <br>
+                    <input type="checkbox" id="public" name="swim" value="public">
+                    <label for="public">Public Pool</label> <br>
+                    <input type="checkbox" id="health" name="swim" value="health">
+                    <label for="health">Health Club Pool</label>
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Quick Coffee / Tea Break </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="myplace" name="tea" value="myplace">
+                    <label for="myplace">My Place</label> <br>
+                    <input type="checkbox" id="yours" name="tea" value="yours">
+                    <label for="yours">Yours</label>
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Art </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="sketching" name="art" value="sketching">
+                    <label for="sketching">Sketching</label> <br>
+                    <input type="checkbox" id="drawing" name="art" value="drawing">
+                    <label for="drawing">Drawing</label>
+                    <input type="checkbox" id="painting" name="art" value="painting">
+                    <label for="painting">Painting</label>
+                    <input type="checkbox" id="any" name="art" value="any">
+                    <label for="any">Any</label>
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Food gatherings </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="cookings" name="likes" value="cookings">
+                    <label for="cookings">Informal dinner parties</label> <br>
+                    <input type="checkbox" id="bbqs" name="likes" value="bbqs">
+                    <label for="bbqs">BBQs</label> <br>
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Television Sports </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="football" name="tv" value="football">
+                    <label for="football">Football</label> <br>
+                    <input type="checkbox" id="basketball" name="tv" value="basketball">
+                    <label for="basketball">Basketball</label> <br>
+                    <input type="checkbox" id="others" name="tv" value="others">
+                    <label for="others">Others</label> <br>    
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Movies </label>
+                </div>
+                <select class="select" name="movie" id="movie">
+                    <option value="selected-default" selected="selected">--Select--</option>
+                    <option value="Action">Action</option>
+                    <option value="Rom-Com">Rom-Com</option>
+                    <option value="Science_Fiction">Science Fiction</option>
+                    <option value="Indie">Indie</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="Any">Any</option>
+                </select>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Shopping </label>
+                </div>
+                <select class="select" name="shopping" id="shopping">
+                    <option value="selected-default" selected="selected">--Select--</option>
+                    <option value="Groceries">Groceries</option>
+                    <option value="Books">Books</option>
+                    <option value="Clothes">Clothes</option>
+                    <option value="Beauty">Beauty</option>
+                    <option value="Any">Any</option>
+                </select>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Happy Hours </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="quaterly" name="happy" value="quarterly">
+                    <label for="quaterly">Quarterly</label> <br>
+                    <input type="checkbox" id="monthly" name="happy" value="monthly">
+                    <label for="monthly">Monthly</label> <br>
+                    <input type="checkbox" id="weekly" name="happy" value="weekly">
+                    <label for="weekly">Weekly</label> <br>
+                    <input type="checkbox" id="outdoors" name="happy" value="outdoors only">
+                    <label for="outdoors">Outdoors</label> <br>    
+                </div>
+    
+                <h3><b>I may be able to do these free favors for my nearby neighbors:</b></h3>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Errands </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="emergencies" name="erands" value="Quaterly">
+                    <label for="emergencies">Emergencies</label> <br>
+                    <input type="checkbox" id="occasional" name="erands" value="ocassional">
+                    <label for="occasional">Occasional</label> <br>
+                    <input type="checkbox" id="regular" name="erands" value="regular">
+                    <label for="regular">Regular</label> <br>
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Rides </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="emergenciesr" name="rides" value="Quaterly">
+                    <label for="emergenciesr">Emergencies</label> <br>
+                    <input type="checkbox" id="occasionalr" name="rides" value="ocassional">
+                    <label for="occasionalr">Occasional</label> <br>
+                    <input type="checkbox" id="regularr" name="rides" value="regular">
+                    <label for="regularr">Regular</label> <br>
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Childcare </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="emergenciesc" name="childcare" value="Quaterly">
+                    <label for="emergenciesc">Emergencies</label> <br>
+                    <input type="checkbox" id="occasionalc" name="childcare" value="ocassional">
+                    <label for="occasionalc">Occasional</label> <br>
+                    <input type="checkbox" id="regularc" name="childcare" value="regular">
+                    <label for="regularc">Regular</label> <br>
+                </div>
+
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Eldercare </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="emergencieselder" name="eldercare" value="Quaterly">
+                    <label for="emergencieselder">Emergencies</label> <br>
+                    <input type="checkbox" id="occasionalelder" name="eldercare" value="ocassional">
+                    <label for="occasionalelder">Occasional</label> <br>
+                    <input type="checkbox" id="regularelder" name="eldercare" value="regular">
+                    <label for="regularelder">Regular</label> <br>
+                </div>
+
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Petcare </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="emergenciespet" name="petcare" value="Quaterly">
+                    <label for="emergenciespet">Emergencies</label> <br>
+                    <input type="checkbox" id="occasionalpet" name="petcare" value="ocassional">
+                    <label for="occasionalpet">Occasional</label> <br>
+                    <input type="checkbox" id="regularpet" name="petcare" value="regular">
+                    <label for="regularpet">Regular</label> <br>
+                </div>
+
+                <div>
+                    <br>
+                    <label for="tutoring">Tutoring - Name the subjects</label>
+                    <input type="text" id="tutoring" name="tutoring"/>
+                </div>
+
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Repair Advice </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="home" name="home" value="home repair">
+                    <label for="home">Home Repair</label> <br>
+                    <input type="checkbox" id="auto" name="home" value="auto repair">
+                    <label for="auto">Vehicle repair</label> <br>
+                </div>
+
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Other Advice </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="landscape" name="landscape" value="landscape">
+                    <label for="landscape">Garden/landscape</label> <br>
+                    <input type="checkbox" id="computer" name="landscape" value="computer">
+                    <label for="computer">Computer</label> <br>
+                </div>
+
+                <div id="locationInfo">
+                    <label for="latitude"></label>
+                    <input type="text" id="latitude" name="latitude">
+                    <label for="longitude"></label>
+                    <input type="text" id="longitude" name="longitude">
+                </div>
+                <section class="profile">
+                <!---
+                    <label htmlFor="url">Profile Photo</label>
+                    <input
+                        type="url"
+                        name="url"
+                        id="url"
+                        onChange={handleChange}
+                        required={true}
+                    />-->
+                    <label><b>Profile photo</b></label>
+                    <div className="photo">
+                        
+                        <input type="file" id="photo" name="photo" accept="image/*">
+                        <!--<img src={formData.url} alt="profile pic preview"/>-->
+                    </div>
+                    
+        
+                </section>
+    
+                <button class="button" type="submit" onclick="getSimilarUsers()">
+                <p>SUBMIT</p></button>
+            </section>
+        </form>
+    </div>
+   
+
+
+    <!-- <div class="profiles">
+
+        <div class="card">
+            <div class="card-info">
+                <div class="card-avatar"><img src=""></div>
+                <div class="card-title">Name1</div>
+                <div class="card-subtitle">My Bio1</div>
+            </div>  
+            <div class="card__wrapper">
+                <button class="card__btn">More</button>
+                <button class="card__btn card__btn-solid">Chat</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-info">
+                <div class="card-avatar"><img src=""></div>
+                <div class="card-title">Name2</div>
+                <div class="card-subtitle">My Bio2</div>
+            </div>  
+            <div class="card__wrapper">
+                <button class="card__btn">More</button>
+                <button class="card__btn card__btn-solid">Chat</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-info">
+                <div class="card-avatar"><img src=""></div>
+                <div class="card-title">Name3</div>
+                <div class="card-subtitle">My Bio3</div>
+            </div>  
+            <div class="card__wrapper">
+                <button class="card__btn">More</button>
+                <button class="card__btn card__btn-solid">Chat</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-info">
+                <div class="card-avatar"><img src=""></div>
+                <div class="card-title">Name4</div>
+                <div class="card-subtitle">My Bio4</div>
+            </div>  
+            <div class="card__wrapper">
+                <button class="card__btn">More</button>
+                <button class="card__btn card__btn-solid" >Chat</button> 
+            </div>
+        </div>
+    </div> -->
+    
+
+    <div id="similarUsersDetails"></div>
+
+    <!-- <div id="popupContainer" class="popup">
+        <div class="popup-content">
+            <span class="popup-close" onclick="closePopup()">&times;</span>
+            <div id="userDetails"></div>
+        </div>
+    </div> -->
+    
+    
+    
+
+
+
+
+    <!-- <h2 class="head">If you have a Connection it will display below</h2> -->
+
+    <ul id="similarUsers"></ul>
+
+    <!-- <div id="similarUsersDetails"></div> -->
+
+    <div id="popupContainer" class="popup">
+        <div class="popup-content">
+            <span class="popup-close" onclick="closePopup()">&times;</span>
+            <div id="userDetails"></div>
+        </div>
+    </div>
+
+    
+
+    <script>
+
+function calculateHaversineDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radius of the Earth in km
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLon = (lon2 - lon1) * (Math.PI / 180);
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c; // Distance in km
+    const miles = distance * 0.621371; // Convert to miles
+    return miles;
+}
+
+function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+    }
+    function showPosition(position) {
+        document.getElementById("latitude").value = position.coords.latitude;
+        document.getElementById("longitude").value = position.coords.longitude;
+    }
+
+    
+    // const similarUsers = [];
+    // const similarUsersList = document.getElementById("similarUsers");
+    // similarUsersDetails.innerHTML = "";
+    
+        fetch('/get_users')
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    // Handle the error here, e.g., display "No connections found"
+                    const similarUsersList = document.getElementById("similarUsers");
+                    const noConnectionMessage = document.createElement("p");
+                    noConnectionMessage.textContent = "No connections found.";
+                    similarUsersList.appendChild(noConnectionMessage);
+                    throw new Error('Request failed');
+                }
+            })
+            .then(user_data => {
+                const similarUsersList = document.getElementById("similarUsers");
+                similarUsersList.innerHTML = "";
+                similarUsersDetails.innerHTML = "";
+    
+                // Replace this with actual logic to find similar users
+                const currentUser = user_data[user_data.length - 1];
+                const similarUsers = [];
+                const maxDistance = 5; // 5 miles
+                console.log('Received user_data:', user_data);
+
+                similarUsers.length = 0;
+               
+
+                user_data.forEach(user => {
+
+                    const latitude = parseFloat(document.getElementById("latitude").value);
+                    const longitude = parseFloat(document.getElementById("longitude").value);
+                    console.log("Current user:", currentUser);
+
+                    // const distance = calculateDistance(user.latitude,user.longitude,currentUser.latitude,currentUser.longitude);
+
+                    const distance = calculateHaversineDistance(user.latitude, user.longitude, currentUser.latitude, currentUser.longitude);
+                    console.log(currentUser.latitude,currentUser.longitude)
+
+                    let allConditionsMet = true;
+                    if ( user.walking === currentUser.walking && user.running === currentUser.running &&  user.enableRunning === currentUser.enableRunning && user.gardening === currentUser.gardening && user.swim === currentUser.swim && user.tea === currentUser.tea && user.draw === currentUser.draw && user.like === currentUser.like &&  user.tv === currentUser.tv && user.movie === currentUser.movie && user.shopping === currentUser.shopping && user.happy === currentUser.happy && user.erands === currentUser.erands && user.rides === currentUser.rides && user.childcare === currentUser.childcare && user.eldercare === currentUser.eldercare && user.petcare === currentUser.petcare && user.tutoring === currentUser.tutoring && user.home === currentUser.home && user.landscape === currentUser.landscape ) {
+                        
+
+                       allConditionsMet = false;
+                       
+                    }
+                   
+                    // console.log("Distance:", distance);
+
+                    if(allConditionsMet)
+                    {
+                        const exceptionFields = ["person", "mobile", "email", "address", "age"];
+                        const totalFields = Object.keys(currentUser).length - exceptionFields.length;
+                        const currentUserKeys = Object.keys(currentUser);
+                        console.log("Distance:", distance);
+
+                        let matchingField = 0;
+                        let nonBlankFields = 0;
+                        let selected = 0;
+                        let matchingFields = [];
+                        
+                        
+        //                 for (const field in currentUser) {
+        //                     if (!exceptionFields.includes(field) && user[field] === currentUser[field]) {
+                                
+                               
+        //                         matchingFields.push(field);
+        //                     }
+                            
+        // // Calculate the similarity percentage
+                            
+    
+        //                 }
+                            console.log("Distance:", distance);
+                            for (const field in currentUserKeys) {
+                            if (!exceptionFields.includes(currentUserKeys[field])) {
+                                const currentUserValue = currentUser[currentUserKeys[field]];
+                                const userValue = user[currentUserKeys[field]];
+                                
+                                if (currentUserValue !== "" && userValue !== "" && currentUserValue === userValue) {
+                                    matchingFields.push(currentUserKeys[field]);
+                                    matchingField++;
+                                    // matchingFields.push(field);
+                                }
+                                if (currentUserValue === "") {
+                                    nonBlankFields++; // Increment for non-blank fields
+                                }
+                                
+
+                            }
+                        }
+                        const totalField = totalFields - nonBlankFields; 
+                        const numberOfMatchingFields = matchingField;
+                        console.log(`Number of matching fields: ${numberOfMatchingFields}`);
+                        console.log(totalField)
+                        const similarityPercentage = (matchingField / totalField) * 100;
+                        console.log("Distance:", distance);
+                        console.log("Similarity Percentage:", similarityPercentage);
+    
+                        if ( distance <= maxDistance && similarityPercentage >= 50  ) {
+                            // console.log("Similar user found:", user);
+                        console.log("Matching Fields:", matchingFields);
+                        console.log("Similarity Percentage:", similarityPercentage);
+                            similarUsers.push({ user, similarityPercentage, matchingFields });
+                            console.log(user);
+                            // console.log(currentUser);
+                        }
+                    
+                    }
+                    
+                    });
+
+    
+                    if (similarUsers.length > 0) {
+                        similarUsers.forEach(entry => {
+                            const user = entry.user;
+                            const similarityPercentage = entry.similarityPercentage;
+                            const matchingFields = entry.matchingFields;
+    
+                
+    
+                const card = document.createElement("div");
+            card.classList.add("card");
+
+            // Populate the card with user details
+            card.innerHTML = `
+                <div class="card-info">
+                    <div class="card-avatar"><img src=""></div>
+                    <div class="card-title">${user.person}</div>
+                    <div class="card-subtitle">Similarity: ${similarityPercentage.toFixed(2)}%</div>
+                </div>  
+                <div class="card__wrapper">
+                    <button class="card__btn">More</button>
+                </div>`;
+
+                const moreButton = card.querySelector(".card__btn");
+    moreButton.addEventListener("click", () => {
+        showContact(user.mobile, user.email, matchingFields, user.gardening, user.swim, user.tea, user.draw, user.like, user.casual, user.tv, user.movie, user.shopping, user.happy, user.erands, user.rides, user.childcare, user.eldercare, user.petcare, user.tutoring, user.home, user.landscape);
+    });
+
+            // Append the card to the similarUsersDetails container
+            similarUsersDetails.appendChild(card);
+        });
+    } else {
+        // Handle the case where no similar users were found
+        const noConnectionMessage = document.createElement("p");
+        noConnectionMessage.textContent = "No similar users found.";
+        similarUsersDetails.appendChild(noConnectionMessage);
+    }
+});
+    
+
+
+
+
+
+let userDetailsContainer = null; // Variable to track the user details container
+
+function showContact(mobile, email, matchingFields, gardening, swim, tea, draw, like, casual, tv, movie, shopping, happy, erands, rides, childcare, eldercare, petcare, tutoring, home, landscape) {
+    // Check if the user details container is already displayed
+    if (userDetailsContainer) {
+        return; // Do nothing if the container is already open
+    }
+
+    // Create a container for displaying user details
+    userDetailsContainer = document.createElement("div");
+    userDetailsContainer.classList.add("user-details-container");
+
+    // Populate the container with user details
+    userDetailsContainer.innerHTML = `
+        <h2>User Details</h2>
+        <p>Mobile: ${mobile}</p>
+        <p>Email: ${email}</p>
+        <p>Matching Fields: ${matchingFields.join(", ")}</p>
+        </p>
+        <button onclick="closeUserDetailsContainer()">Close</button>
+    `;
+
+    // Append the container to the document body
+    document.body.appendChild(userDetailsContainer);
+}
+
+// Function to close the user details container
+function closeUserDetailsContainer() {
+    if (userDetailsContainer) {
+        userDetailsContainer.remove();
+        userDetailsContainer = null; // Reset the container variable
+    }
+}
+
+            function getSimilarInterestsString(...interests) {
+                const similarInterests = interests.filter(interest => interest === true);
+                return similarInterests.join(", ");
+            }
+
+            function toggleintrest() {
+        const enableRunningCheckbox = document.getElementById("enableRunning");
+        const runningRadioInputs = document.querySelectorAll("input[name='running']");
+
+        if (enableRunningCheckbox.checked) {
+            runningRadioInputs.forEach(input => (input.disabled = false));
+        } else {
+            runningRadioInputs.forEach(input => (input.disabled = true));
+        }
+    }
+
+
+    
+
+    function getSimilarUsers() {
+        const latitude = parseFloat(document.getElementById("latitude").value);
+        const longitude = parseFloat(document.getElementById("longitude").value);
+
+        fetch('/get_similar_users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `latitude=${latitude}&longitude=${longitude}`,
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the data to display similar users' information
+            const similarUsersDiv = document.getElementById("similarUsers");
+            similarUsersDiv.innerHTML = ""; // Clear existing content
+
+            data.forEach(user => {
+                const userDiv = document.createElement("div");
+                userDiv.textContent = `Name: ${user.name}, Age: ${user.age}, Email: ${user.email}`;
+                similarUsersDiv.appendChild(userDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching similar users:', error);
+        });
+  }
+
+    </script>
+
+
+
+
+
+    
+</body>
+</html>

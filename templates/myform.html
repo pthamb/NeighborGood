@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+
+    <title>NeighborGood Interest Form</title>
+</head>
+
+<body  onload="getLocation()">
+
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="index.html" class="navbar-logo"> 
+              <img src="./src/logot.png" alt="Neighborgood" width="100%" height="50">
+            </a>
+        </div>
+        <div class = "navbar-right">
+            <a href="./index.html" class="navbar-link">Home</a>
+            <a href="#services" class="navbar-link">Services</a>
+        </div>
+    </nav>
+    
+    <h2 style="text-align: center; color: rgb(86, 37, 4) ;">NeighborGood Interest Form</h2>
+
+    <div class="onboarding">
+
+        <form action="/form" method="POST">
+
+            <section>
+                <label for="person">Name</label>
+                <input
+                    id="person"
+                    type='text'
+                    name="person"
+                    placeholder="Name"
+                    required=true
+                />
+    
+                <label for="age">Age</label>
+                <input
+                    id="age"
+                    type='number'
+                    name="age"
+                    required={true}
+                />
+    
+                <label for="email">Email</label>
+                <input
+                    id="email"
+                    type='text'
+                    name="email"
+                    placeholder="abc@xyz.com"
+                    required={true}
+                />
+    
+                <label htmlFor="address">Zip-code</label>
+                <input
+                    id="address"
+                    type='number'
+                    name="address"
+                />
+    
+                <label for="country">Country Code:</label>
+                <select class="select" id="country" name="country">
+                <option value="+1">+1 (USA)</option>
+                <option value="+44">+44 (UK)</option>
+                <option value="+91">+91 (India)</option>
+                <!-- Add more country options as needed -->
+                </select>
+    
+                <label for="mobile">Mobile Number:</label>
+                <input id="mobile" type="tel" name="mobile" placeholder="Mobile Number" required>
+    
+                <label>Share my details with similar users?</label>
+                <label class="radio-button" for="sharePreferenceYes"><input type="radio" id="sharePreferenceYes" name="sharePreference" value="yes">
+                    <span class="radio"></span>Yes</label>
+                <label class="radio-button" for="sharePreferenceNo"><input type="radio" id="sharePreferenceNo" name="sharePreference" value="no">
+                    <span class="radio"></span>No</label>
+                
+                <hr>
+                <h3 style="color:rgb(86, 37, 4) ;"><b>Interested Activities:</b></h3>
+    
+
+                <div class="checkbox">
+                <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                <label for="enableRunning">Walking </label>
+                </div>
+                <div class="choice">
+                    <input id="slow" type="checkbox" name="walking" value="slow"/>
+                    <label for="slow">Slow</label>
+                    <input id="moderate" type="checkbox" name="walking" value="moderate"/>
+                    <label for="moderate">Moderate</label>
+                    <input id="fast" type="checkbox" name="walking" value="fast"/>
+                    <label for="fast">Fast</label>
+                </div>
+
+                <div class="checkbox">
+                    <input class="enableRunning" type="checkbox" id="enableRunning" onchange="toggleintrest()" />
+                    <label for="enableRunning">Stulfaft Park</label>
+                </div>
+                <div class="choice">
+                    <input id="slowpark" type="checkbox" name="walking" value="slow"/>
+                    <label for="slowpark">Slow</label>
+                    <input id="moderatepark" type="checkbox" name="walking" value="moderate"/>
+                    <label for="moderatepark">Moderate</label>
+                    <input id="fastpark" type="checkbox" name="walking" value="fast"/>
+                    <label for="fastpark">Fast</label>
+                </div>
+
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Running </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="runnings" name="running" value="slow">
+                    <label for="runnings">Slow(Jogging)</label> <br>
+                    <input type="checkbox" id="runningm" name="running" value="moderate">
+                    <label for="runningm">Moderate</label> <br>
+                    <input type="checkbox" id="runningf" name="running" value="fast">
+                    <label for="runningf">Fast</label> <br>
+                </div>
+    <!--
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Bicycling </label>
+                </div> -->
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Dog Walking </label>
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Gardening </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="flowers" name="gardening" value="flowers">
+                    <label for="flowers">Flowers/Landscape</label> <br>
+                    <input type="checkbox" id="fruits" name="gardening" value="fruits">
+                    <label for="fruits">Fruits/Veggies</label> <br>
+                    <input type="checkbox" id="both" name="gardening" value="both">
+                    <label for="both">Both</label>
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Swimming </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="mybackyard" name="swim" value="mybackyard">
+                    <label for="mybackyard">Backyard</label> <br>
+                    <input type="checkbox" id="public" name="swim" value="public">
+                    <label for="public">Public Pool</label> <br>
+                    <input type="checkbox" id="health" name="swim" value="health">
+                    <label for="health">Health Club Pool</label>
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Quick Coffee / Tea Break </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="myplace" name="tea" value="myplace">
+                    <label for="myplace">My Place</label> <br>
+                    <input type="checkbox" id="yours" name="tea" value="yours">
+                    <label for="yours">Yours</label>
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Art </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="sketching" name="art" value="sketching">
+                    <label for="sketching">Sketching</label> <br>
+                    <input type="checkbox" id="drawing" name="art" value="drawing">
+                    <label for="drawing">Drawing</label>
+                    <input type="checkbox" id="painting" name="art" value="painting">
+                    <label for="painting">Painting</label>
+                    <input type="checkbox" id="any" name="art" value="any">
+                    <label for="any">Any</label>
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Food gatherings </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="cookings" name="likes" value="cookings">
+                    <label for="cookings">Informal dinner parties</label> <br>
+                    <input type="checkbox" id="bbqs" name="likes" value="bbqs">
+                    <label for="bbqs">BBQs</label> <br>
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Television Sports </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="football" name="tv" value="football">
+                    <label for="football">Football</label> <br>
+                    <input type="checkbox" id="basketball" name="tv" value="basketball">
+                    <label for="basketball">Basketball</label> <br>
+                    <input type="checkbox" id="others" name="tv" value="others">
+                    <label for="others">Others</label> <br>    
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Movies </label>
+                </div>
+                <select class="select" name="movie" id="movie">
+                    <option value="selected-default" selected="selected">--Select--</option>
+                    <option value="Action">Action</option>
+                    <option value="Rom-Com">Rom-Com</option>
+                    <option value="Science_Fiction">Science Fiction</option>
+                    <option value="Indie">Indie</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="Any">Any</option>
+                </select>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Shopping </label>
+                </div>
+                <select class="select" name="shopping" id="shopping">
+                    <option value="selected-default" selected="selected">--Select--</option>
+                    <option value="Groceries">Groceries</option>
+                    <option value="Books">Books</option>
+                    <option value="Clothes">Clothes</option>
+                    <option value="Beauty">Beauty</option>
+                    <option value="Any">Any</option>
+                </select>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Happy Hours </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="quaterly" name="happy" value="quarterly">
+                    <label for="quaterly">Quarterly</label> <br>
+                    <input type="checkbox" id="monthly" name="happy" value="monthly">
+                    <label for="monthly">Monthly</label> <br>
+                    <input type="checkbox" id="weekly" name="happy" value="weekly">
+                    <label for="weekly">Weekly</label> <br>
+                    <input type="checkbox" id="outdoors" name="happy" value="outdoors only">
+                    <label for="outdoors">Outdoors</label> <br>    
+                </div>
+    
+                <h3><b>I may be able to do these free favors for my nearby neighbors:</b></h3>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Errands </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="emergencies" name="erands" value="Quaterly">
+                    <label for="emergencies">Emergencies</label> <br>
+                    <input type="checkbox" id="occasional" name="erands" value="ocassional">
+                    <label for="occasional">Occasional</label> <br>
+                    <input type="checkbox" id="regular" name="erands" value="regular">
+                    <label for="regular">Regular</label> <br>
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Rides </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="emergenciesr" name="rides" value="Quaterly">
+                    <label for="emergenciesr">Emergencies</label> <br>
+                    <input type="checkbox" id="occasionalr" name="rides" value="ocassional">
+                    <label for="occasionalr">Occasional</label> <br>
+                    <input type="checkbox" id="regularr" name="rides" value="regular">
+                    <label for="regularr">Regular</label> <br>
+                </div>
+    
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Childcare </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="emergenciesc" name="childcare" value="Quaterly">
+                    <label for="emergenciesc">Emergencies</label> <br>
+                    <input type="checkbox" id="occasionalc" name="childcare" value="ocassional">
+                    <label for="occasionalc">Occasional</label> <br>
+                    <input type="checkbox" id="regularc" name="childcare" value="regular">
+                    <label for="regularc">Regular</label> <br>
+                </div>
+
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Eldercare </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="emergencieselder" name="childcare" value="Quaterly">
+                    <label for="emergencieselder">Emergencies</label> <br>
+                    <input type="checkbox" id="occasionalelder" name="childcare" value="ocassional">
+                    <label for="occasionalelder">Occasional</label> <br>
+                    <input type="checkbox" id="regularelder" name="childcare" value="regular">
+                    <label for="regularelder">Regular</label> <br>
+                </div>
+
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Petcare </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="emergenciespet" name="childcare" value="Quaterly">
+                    <label for="emergenciespet">Emergencies</label> <br>
+                    <input type="checkbox" id="occasionalpet" name="childcare" value="ocassional">
+                    <label for="occasionalpet">Occasional</label> <br>
+                    <input type="checkbox" id="regularpet" name="childcare" value="regular">
+                    <label for="regularpet">Regular</label> <br>
+                </div>
+
+                <div>
+                    <br>
+                    <label for="tutoring">Tutoring - Name the subjects</label>
+                    <input type="text" id="tutoring" name="tutoring"/>
+                </div>
+
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Repair Advice </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="home" name="home" value="home repair">
+                    <label for="home">Home Repair</label> <br>
+                    <input type="checkbox" id="auto" name="auto" value="auto repair">
+                    <label for="auto">Vehicle repair</label> <br>
+                </div>
+
+                <div class="checkbox">
+                    <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+                    <label for="enableRunning">Other Advice </label>
+                </div>
+                <div class="choice">
+                    <input type="checkbox" id="landscape" name="landscape" value="garden/landscape">
+                    <label for="landscape">Garden/landscape</label> <br>
+                    <input type="checkbox" id="computer" name="computer" value="computer">
+                    <label for="computer">Computer</label> <br>
+                </div>
+
+                <section class="profile">
+    <!---
+                    <label htmlFor="url">Profile Photo</label>
+                    <input
+                        type="url"
+                        name="url"
+                        id="url"
+                        onChange={handleChange}
+                        required={true}
+                    />-->
+                    <label><b>Profile photo</b></label>
+                    <div className="photo">
+                        
+                        <input type="file" id="photo" name="photo" accept="image/*">
+                        <!--<img src={formData.url} alt="profile pic preview"/>-->
+                    </div>
+                    
+        
+                </section>
+    
+                <button class="button" type="submit" onclick="getSimilarUsers()">
+                <p>SUBMIT</p></button>
+            </section>
+    
+            
+    
+        </form>
+    </div>
+    
+</body>
+    
+</html>

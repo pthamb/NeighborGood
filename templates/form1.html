@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Neighborgood</title>
+  <!-- <link rel="stylesheet" href="./style.css"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.420/build/spline-viewer.js"></script>
+
+
+
+<style>
+
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: "Poppins", Arial, Helvetica, sans-serif ;
+    background-color: #d8e2dc;
+    /*background-color: #cbf3f0;*/
+}
+
+/*---Nav---*/
+
+nav {
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+nav a {
+    text-decoration: none;
+    color: #000;
+    padding: 20px;
+    display: flex;
+  }
+.logo{
+  padding-right: 10px;
+}
+.navbar-left{
+    font-weight: bold;
+}
+
+.navbar-right{
+    text-align: right;
+    display: flex;
+}
+
+.navbar-right a:hover {
+    background-color: #fdf0d5;
+    color: #000;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  nav a {
+    padding: 10px; /* Adjust padding for mobile */
+  }
+
+  .navbar-right {
+    margin-top: 10px; /* Add spacing between logo and links */
+    text-align: left; /* Align links to the left */
+  }
+}
+
+/* ---- Main ---- */
+.hero{
+    background-color: #b6e2ed;
+}
+.hero-text{
+    text-align: center;
+}
+
+.spline{
+    padding: 10px 50px 60px;
+    z-index: 0;
+}
+
+/* ---- Button ----*/
+button {
+    position: relative;
+    padding: 13px 35px;
+    background: #f5ddb3;
+    font-size: 17px;
+    font-weight: 900;
+    color: #181818;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px #18181869, inset 2px 2px 10px #ffffffb0;
+    transition: all .3s ease-in-out;
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    margin-bottom: 30px;
+  }
+
+  
+  .icon-1 {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 0px;
+    height: auto;
+    transition: all .5s ease-in-out;
+    z-index: -1;
+  }
+  
+  .icon-2 {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 0px;
+    height: auto;
+    transition: all .5s ease-in-out;
+    z-index: -2;
+  }
+  
+  .icon-3 {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 0px;
+    height: auto;
+    transition: all .5s ease-in-out;
+    z-index: -2;
+  }
+  
+  .icon-4 {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 0px;
+    height: auto;
+    transition: all .5s ease-in-out;
+    z-index: -2;
+  }
+  
+  .icon-5 {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 0px;
+    height: auto;
+    transition: all .5s ease-in-out;
+    z-index: -2;
+  }
+  
+  button:hover {
+    padding: 13px 25px;
+    border-radius: 8px 8px 24px 24px;
+  }
+  
+  button:hover .icon-1 {
+    top: -250%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 50px;
+    height: auto;
+    animation: inIcon1 1s ease .45s forwards;
+  }
+  
+  @keyframes inIcon1 {
+    0% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(0deg);
+    }
+  
+    25% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(5deg);
+    }
+  
+    50% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(1deg);
+    }
+  
+    65% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(3deg);
+    }
+  
+    100% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(0deg);
+    }
+  }
+  
+  button:hover .icon-2 {
+    position: absolute;
+    top: -200%;
+    left: 90%;
+    transform: translate(-50%, 0);
+    width: 75px;
+    height: auto;
+    animation: inIcon2 1s ease .45s forwards;
+  }
+  
+  @keyframes inIcon2 {
+    0% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(0deg);
+    }
+  
+    35% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(10deg);
+    }
+  
+    50% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(4deg);
+    }
+  
+    80% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(5deg);
+    }
+  
+    100% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(0deg);
+    }
+  }
+  
+  button:hover .icon-3 {
+    position: absolute;
+    top: -130%;
+    left: 20%;
+    transform: translate(-50%, 0);
+    width: 60px;
+    height: auto;
+    animation: inIcon3 1s ease .45s forwards;
+  }
+  
+  @keyframes inIcon3 {
+    0% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(0deg);
+    }
+  
+    35% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(-2deg);
+    }
+  
+    100% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(0deg);
+    }
+  }
+  
+  button:hover .icon-4 {
+    position: absolute;
+    top: -300%;
+    left: 10%;
+    transform: translate(-50%, 0);
+    width: 85px;
+    height: auto;
+    animation: inIcon4 1s ease .45s forwards;
+  }
+  
+  @keyframes inIcon4 {
+    0% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(0deg);
+    }
+  
+    40% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(-3deg);
+    }
+  
+    100% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(0deg);
+    }
+  }
+  
+  button:hover .icon-5 {
+    position: absolute;
+    top: -350%;
+    left: 90%;
+    transform: translate(-50%, 0);
+    width: 85px;
+    height: auto;
+    animation: inIcon5 1s ease .45s forwards;
+  }
+  
+  @keyframes inIcon5 {
+    0% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(0deg);
+    }
+  
+    35% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(-3deg);
+    }
+  
+    100% {
+      transform-origin: 0 100%;
+      transform: translate(-50%, 0) rotate(0deg);
+    }
+  }
+  
+  .fil-leaf-1 {
+    fill: #7B9B3A
+  }
+  
+  .fil-leaf-2 {
+    fill: #556729;
+    fill-rule: nonzero
+  }
+  
+  .fil-leaf-3 {
+    fill: #556729
+  }
+  
+  .fil-leaf-4 {
+    fill: #3C4819
+  }
+  
+  .fil-leaf-5 {
+    fill: #3C4819
+  }
+
+
+  /*---- Services ----*/
+
+  #services{
+    padding: 2px 50px ;
+    color: #3C4819;
+  }
+  
+  .services {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 10px 50px 60px;
+    z-index: 0;
+  } 
+
+
+  .upper-row{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .lower-row{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .services .c1 {
+    background-color: #a4d9b8;
+  }
+  
+  .services .c2 {
+    background-color: #22c55e;
+  }
+  
+  .services .c3 {
+    background-color: #22c55e;
+  }
+
+  .services .c4 {
+    background-color: #a4d9b8;
+  }
+
+  
+  .services .service {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 150px;
+    width: 45%;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 200ms;
+  }
+  
+  .services .service p.tip {
+    font-size: 1em;
+    font-weight: 700;
+    justify-content: center;
+    
+  }
+  
+  .services .service p.second-text {
+    font-size: 0.8em;
+  }
+  
+  .services .service:hover {
+    transform: scale(1.1, 1.1);
+  }
+  
+  .services:hover > .service:not(:hover) {
+    filter: blur(10px);
+    transform: scale(0.9, 0.9);
+  }
+
+  @media (min-width: 768px) {
+    .upper-row, .lower-row {
+      flex-direction: row; /* Arrange items horizontally on larger screens */
+    }
+  
+    .services .service {
+      width: 45%; /* Adjust width for larger screens */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .services{
+      padding: 5px;
+    }
+    .service{
+      justify-content: center;
+      padding: 20px;
+    }
+    .upper-row, .lower-row {
+      flex-direction: column; /* Arrange items horizontally on larger screens */
+      gap: 25px;
+    }
+  
+    .services .service {
+      width: 100%; /* Adjust width for larger screens */
+      padding: 0%;
+    }
+  }
+
+
+  /*----Description ----*/
+  .description .d1{
+    background-color: hwb(0 75% 25%);
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  .description h2{
+    color: #3C4819;
+  }
+
+  .description .d2{
+    background-color: hwb(178 78% 4%);
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .descr-button{
+    margin-top: 60px;
+  }
+
+
+  /* ---- Footer -----*/
+
+  footer{
+    text-align: center;
+    justify-content: center;
+    background-color: white;
+    margin-top:10px ;
+    padding: 12px;
+  }
+
+
+  /* ---- Form Flask ----*/
+  /*
+  input {
+    max-width: 190px;
+    height: 44px;
+    background-color: #05060f0a;
+    border-radius: .5rem;
+    padding: 0 1rem;
+    border: 2px solid transparent;
+    font-size: 1rem;
+    transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s, background .2s cubic-bezier(.25,.01,.25,1) 0s;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: .3rem;
+    font-size: .9rem;
+    font-weight: bold;
+    color: black;
+    transition: color .3s cubic-bezier(.25,.01,.25,1) 0s;
+  }
+  
+  input:hover, input:focus, input-group:hover input {
+    outline: none;
+    border-color: #05060f;
+  }
+  
+  input-group:hover label, input:focus {
+    color: #05060fc2;
+  }
+
+  form{
+    
+    display: flex;
+    flex-direction: column;
+    padding-left: 15%;
+
+  }
+
+  .otherActivities {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+  }
+  
+  .otherActivities input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .checkbox-wrapper-29 {
+    --size: 1rem;
+    --background: #fff;
+    font-size: var(--size);
+  }
+
+  .checkbox-wrapper-29 *,
+  .checkbox-wrapper-29 *::after,
+  .checkbox-wrapper-29 *::before {
+    box-sizing: border-box;
+  }
+
+  .checkbox-wrapper-29 input[type="checkbox"] {
+    visibility: hidden;
+    display: none;
+  }
+
+  .checkbox-wrapper-29 .checkbox__label {
+    width: var(--size);
+  }
+
+  .checkbox-wrapper-29 .checkbox__label:before {
+    content: ' ';
+    display: block;
+    height: var(--size);
+    width: var(--size);
+    position: absolute;
+    top: calc(var(--size) * 0.125);
+    left: 0;
+    background: var(--background);  
+  }
+
+  .checkbox-wrapper-29 .checkbox__label:after {
+    content: ' ';
+    display: block;
+    height: var(--size);
+    width: var(--size);
+    border: calc(var(--size) * .14) solid #000;
+    transition: 200ms;
+    position: absolute;
+    top: calc(var(--size) * 0.125);
+    left: 0;
+    background: var(--background);  
+  }
+
+  .checkbox-wrapper-29 .checkbox__label:after {
+    transition: 100ms ease-in-out;
+  }
+
+  .checkbox-wrapper-29 .checkbox__input:checked ~ .checkbox__label:after {
+    border-top-style: none; 
+    border-right-style: none;
+    -ms-transform: rotate(-45deg); /* IE9 */ /*
+    transform: rotate(-45deg);
+    height: calc(var(--size) * .5);
+    border-color: green;
+  }
+
+  .checkbox-wrapper-29 .checkbox {
+    position: relative;
+    display: flex;
+    cursor: pointer;
+    /* Mobile Safari: */ /*
+    -webkit-tap-highlight-color: rgba(0,0,0,0);   
+  }
+
+  .checkbox-wrapper-29 .checkbox__label:after:hover,
+  .checkbox-wrapper-29 .checkbox__label:after:active {
+     border-color: green; 
+  }
+
+  .checkbox-wrapper-29 .checkbox__label {
+    margin-right: calc(var(--size) * 0.45);
+  }
+  
+  
+  .radio-container {
+    
+    max-width: 300px;
+    color: white;
+    display: flex;
+    gap: 25px;
+    justify-content: left;
+  }
+  
+  .radio-wrapper {
+    margin-bottom: 20px;
+  }
+  
+  .radio-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .radio-button:hover {
+    transform: translateY(-2px);
+  }
+  
+  .radio-button input[type="radio"] {
+    display: none;
+  }
+  
+  .radio-checkmark {
+    display: inline-block;
+    position: relative;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    border: 2px solid #333;
+    border-radius: 50%;
+  }
+  
+  .radio-checkmark:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #333;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .radio-button input[type="radio"]:checked ~ .radio-checkmark:before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .radio-label {
+    font-size: 15px;
+    font-weight: 300;
+  }
+  
+  */
+
+
+/* ---- Form JS ---- */
+
+.onboarding {
+  border-top: solid 1px rgb(213, 213, 213);
+}
+
+.onboarding form {
+  display: flex;
+  padding-left: 70px;
+  
+}
+
+.onboarding form section {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 35%;
+  text-align: start;
+}
+
+.onboarding form input {
+  padding: 15px 30px;
+  margin: 10px 0;
+  font-size: 15px;
+  border: solid 2px rgb(219, 219, 219);
+  border-radius: 10px;
+}
+
+.onboarding form label {
+  margin: 10px 0;
+}
+
+
+.onboarding form input::-webkit-outer-spin-button,
+.onboarding form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*Check*/
+.checkbox{
+  display: flex;
+  flex-direction: row;
+  margin-right: 20px;
+}
+
+.checkbox label{
+  padding-top: 2px;
+  padding-left: 10px;
+  font-size: 18px;
+}
+
+.enableRunning {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  appearance: none;
+  background-color: #bbb;
+  transition: all .3s;
+ }
+ 
+ .enableRunning::before {
+  content: '';
+  position: absolute;
+  border: solid #fff;
+  display: block;
+  width: .3em;
+  height: .6em;
+  border-width: 0 .2em .2em 0;
+  z-index: 1;
+  opacity: 0;
+  right: calc(50% - .3em);
+  top: calc(50% - .6em);
+  transform: rotate(0deg);
+  transition: all .3s;
+  transform-origin: center center;
+ }
+ 
+ .enableRunning:checked {
+  animation: a .3s ease-in forwards;
+  background-color: rgb(120, 190, 120);
+ }
+ 
+ .enableRunning:checked::before {
+  opacity: 1;
+  transform: rotate(405deg);
+ }
+ 
+ @keyframes a {
+  0% {
+   opacity: 1;
+   transform: scale(1) rotateY(0deg);
+  }
+ 
+  50% {
+   opacity: 0;
+   transform: scale(.8) rotateY(180deg);
+  }
+ 
+  100% {
+   opacity: 1;
+   transform: scale(1) rotateY(360deg);
+  }
+ }
+
+
+
+/*Radio*/
+
+.radio-input {
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.radio-input input[type="radio"] {
+  display: none;
+  border-color:#556729;
+}
+
+.radio-input label {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  padding-right: 20px;
+  background-color: #d8e2dc;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+
+}
+
+/*Select*/
+.select {
+  width: 300px;
+  position: relative;
+  height: 35px;
+  padding: 5px;
+  border: #7B9B3A;
+  border-radius: 10px;
+}
+
+.select-selected::after{
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*  background-color: #d8e2dc;
+  .radio-input label:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  transition: all 0.3s ease-in-out;
+}
+
+.radio-input input[type="radio"]:checked + label:before {
+  background-color: rgb(174, 133, 20);
+  top: 0;
+}*/
+
+.radio-input input[type="radio"]:checked + label {
+  background-color: rgb(120, 190, 120);
+  color:#fff;
+  animation: radio-translate 0.5s ease-in-out;
+}
+
+/*@keyframes radio-translate {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}*/
+input[type=file] {
+  width: 300px;
+  height: 20px;
+  
+}
+
+.onboarding form input[type=number] {
+  width: 10%;
+  margin-right: 10px;
+}
+
+
+.onboarding form input[type=checkbox] {
+  display: flex;
+}
+
+.onboarding form input[type=submit]:hover {
+  background-color: bisque;
+}
+
+.onboarding form input[type=submit]:active {
+  background-color: rgb(178, 159, 102);
+}
+
+.onboarding form .photo-container img {
+  width: 100%
+}
+
+
+/* ---- Dashboard ---- */
+
+.profiles {
+  padding: 40px;
+  display: flex;
+  padding: 20px;
+}
+
+.card {
+  width: 190px;
+  margin: 30px;
+  height: 254px;
+  background: #f5f5f5;
+  padding: 2rem 1.5rem;
+  transition: box-shadow .3s ease, transform .2s ease;
+ }
+ 
+ .card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform .2s ease, opacity .2s ease;
+ }
+ 
+ /*Image*/
+ .card-avatar {
+  --size: 60px;
+  background: linear-gradient(to top, #f1e1c1 0%, #fcbc97 100%);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  transition: transform .2s ease;
+  margin-bottom: 1rem;
+ }
+ 
+ 
+ /*Card footer*/
+ 
+ 
+ /*Text*/
+ .card-title {
+  color: #333;
+  font-size: 1.5em;
+  font-weight: 600;
+  line-height: 2rem;
+ }
+ 
+ .card-subtitle {
+  color: #859ba8;
+  font-size: 0.8em;
+ }
+ 
+ /*Hover*/
+ .card:hover {
+  box-shadow: 0 8px 50px #23232333;
+ }
+ 
+ .card:hover .card-info {
+  transform: translateY(-5%);
+ }
+ 
+ .card:hover .card-social {
+  transform: translateY(100%);
+  opacity: 1;
+ }
+ 
+ .card-social__item svg:hover {
+  fill: #232323;
+  transform: scale(1.1);
+ }
+ 
+ .card-avatar:hover {
+  transform: scale(1.1);
+ }
+  
+ .card__btn {
+  margin-top: 15px;
+  width: 100px;
+  height: 25px;
+  border: 2px solid var(--main-color);
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--main-color);
+  background: rgb(120, 190, 120);
+  text-transform: uppercase;
+  transition: all 0.3s;
+  padding-bottom: 20px;
+}
+
+.card__btn-solid {
+  background: rgb(120, 190, 120);
+  color: var(--bg-color);
+}
+
+.card__btn:hover {
+  background: rgb(120, 190, 120);
+  color: var(--bg-color);
+}
+
+.card__btn-solid:hover {
+  background: rgb(120, 190, 120);
+  color: var(--main-color);
+}
+
+
+#similarUsers{
+  border: 1px solid black;
+  width: 200px;
+  height: auto;
+  font-size: 20px;
+  font-family: "Arial Black", Gadget, sans-serif;
+  color: black;
+  align-items: center;
+  padding: 30px 40px 50px 50px;
+  /* text-align: center; */
+  margin: auto;
+  background: rgb(33,36,0);
+background-color: white;
+box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+border-radius: 57px 57px 57px 57px;
+}
+
+.show-contact-button {
+  background-color: #097978; /* Blue color */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 25px;
+  margin: 10px 10px 10px 10px;
+  font-size: 14px ;
+}
+
+    
+</style>
+
+
+</head>
+
+<nav class="navbar">
+    <div class="navbar-left">
+        <a href="./index.html" class="navbar-logo"> 
+          <img class="logo" src="./src/logo.jpeg" alt="Neighborgood" width="30" height="24">
+          Neighborgood</a>
+    </div>
+    <div class = "navbar-right">
+        <a href="./index.html" class="navbar-link">Home</a>
+        <a href="./events.html" class="navbar-link">Events</a>
+    </div>
+</nav>
+
+<div class="onboarding">
+<form action="/form"method="POST" enctype="multipart/form-data" >
+    <section>
+        <label htmlFor="person">Name</label>
+        <input
+            id="person"
+            type='text'
+            name="person"
+            placeholder="Name"
+            required=true
+        />
+
+        <label htmlFor="age">Age</label>
+        <input
+            id="age"
+            type='number'
+            name="age"
+            required={true}
+        />
+
+        <label htmlFor="email">Email</label>
+        <input
+            id="email"
+            type='text'
+            name="email"
+            placeholder="abc@xyz.com"
+            required={true}
+        />
+
+        <label htmlFor="address">Zip-code</label>
+        <input
+            id="address"
+            type='number'
+            name="address"
+        />
+
+        <label htmlFor="mobile">Mobile Number</label>
+        <input
+            id="mobile"
+            type='tel'
+            name="mobile"
+            placeholder="Mobile Number"
+            required={true}
+        />
+
+        <h3><b>Interested Activities:</b></h3>
+
+        <div class="checkbox">
+        <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+        <label for="enableRunning">Walking </label>
+        </div>
+        <div class="radio-input">
+            <input id="slow" type="radio" name="walking" value="slow"/>
+            <label for="slow">Slow</label>
+            <input id="moderate" type="radio" name="walking" value="moderate"/>
+            <label for="moderate">Moderate</label>
+            <input id="fast" type="radio" name="walking" value="fast"/>
+            <label for="fast">Fast</label>
+        </div>
+
+        <div class="checkbox">
+            <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+            <label for="enableRunning">Running </label>
+        </div>
+        <div class="radio-input">
+                <input type="radio" id="runnings" name="running" value="slow">
+                <label for="runnings">Slow(Jogging)</label> <br>
+                <input type="radio" id="runningm" name="running" value="moderate">
+                <label for="runningm">Moderate</label> <br>
+                <input type="radio" id="runningf" name="running" value="fast">
+                <label for="runningf">Fast</label> <br>
+            </div>
+
+        <div class="checkbox">
+            <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+            <label for="enableRunning">Bicycling </label>
+        </div>
+
+        <!-- <div class="checkbox">
+            <input id="dog_walking" class="dog_walking" onchange="toggleintrest()" type="checkbox">
+            <label for="enableRunning">Dog Walking </label>
+        </div> -->
+
+        <div class="checkbox">
+            <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+            <label for="enableRunning">Gardening </label>
+        </div>
+        <div class="radio-input">
+            <input type="radio" id="flowers" name="gardening" value="flowers">
+            <label for="flowers">Flowers/Landscape</label> <br>
+            <input type="radio" id="fruits" name="gardening" value="fruits">
+            <label for="fruits">Fruits/Veggies</label> <br>
+            <input type="radio" id="both" name="gardening" value="both">
+            <label for="both">Both</label>
+        </div>
+
+        <div class="checkbox">
+            <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+            <label for="enableRunning">Swimming </label>
+        </div>
+        <div class="radio-input">
+            <input type="radio" id="mybackyard" name="swim" value="mybackyard">
+            <label for="mybackyard">Backyard</label> <br>
+            <input type="radio" id="public" name="swim" value="public">
+            <label for="public">Public Pool</label> <br>
+            <input type="radio" id="health" name="swim" value="health">
+            <label for="health">Health Club Pool</label>
+        </div>
+
+        <div class="checkbox">
+            <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+            <label for="enableRunning">Quick Coffee / Tea Break </label>
+        </div>
+        <div class="radio-input">
+            <input type="radio" id="myplace" name="tea" value="myplace">
+            <label for="myplace">My Place</label> <br>
+            <input type="radio" id="yours" name="tea" value="yours">
+            <label for="yours">Yours</label>
+        </div>
+
+        <div class="checkbox">
+            <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+            <label for="enableRunning">Art </label>
+        </div>
+        <!-- <div class="radio-input">
+            <input type="radio" id="sketching" name="art" value="sketching">
+            <label for="sketching">Sketching</label> <br>
+            <input type="radio" id="drawing" name="art" value="drawing">
+            <label for="drawing">Drawing</label>
+            <input type="radio" id="painting" name="art" value="painting">
+            <label for="painting">Painting</label>
+            <input type="radio" id="any" name="art" value="any">
+            <label for="any">Any</label>
+        </div> -->
+
+        <div class="checkbox">
+            <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+            <label for="enableRunning">Food gatherings </label>
+        </div>
+        <div class="radio-input">
+            <input type="radio" id="cookings" name="likes" value="cookings">
+            <label for="cookings">Informal dinner parties</label> <br>
+            <input type="radio" id="bbqs" name="likes" value="bbqs">
+            <label for="bbqs">BBQs</label> <br>
+        </div>
+
+        <div class="checkbox">
+            <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+            <label for="enableRunning">Television Sports </label>
+        </div>
+        <div class="radio-input">
+            <input type="radio" id="football" name="tv" value="football">
+            <label for="football">Football</label> <br>
+            <input type="radio" id="basketball" name="tv" value="basketball">
+            <label for="basketball">Basketball</label> <br>
+            <input type="radio" id="others" name="tv" value="others">
+            <label for="others">Others</label> <br>    
+        </div>
+
+        <div class="checkbox">
+            <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+            <label for="enableRunning">Movies </label>
+        </div>
+        <select class="select" name="movie" id="movie">
+            <option value="selected-default" selected="selected">--Select--</option>
+            <option value="Action">Action</option>
+            <option value="Rom-Com">Rom-Com</option>
+            <option value="Science_Fiction">Science Fiction</option>
+            <option value="Indie">Indie</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Any">Any</option>
+        </select>
+
+        <div class="checkbox">
+            <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+            <label for="enableRunning">Shopping </label>
+        </div>
+        <select class="select" name="shopping" id="shopping">
+            <option value="selected-default" selected="selected">--Select--</option>
+            <option value="Groceries">Groceries</option>
+            <option value="Books">Books</option>
+            <option value="Clothes">Clothes</option>
+            <option value="Beauty">Beauty</option>
+            <option value="Any">Any</option>
+        </select>
+
+        <div class="checkbox">
+            <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+            <label for="enableRunning">Happy Hours </label>
+        </div>
+        <div class="radio-input">
+            <input type="radio" id="quaterly" name="happy" value="quarterly">
+            <label for="quaterly">Quarterly</label> <br>
+            <input type="radio" id="monthly" name="happy" value="monthly">
+            <label for="monthly">Monthly</label> <br>
+            <input type="radio" id="weekly" name="happy" value="weekly">
+            <label for="weekly">Weekly</label> <br>
+            <input type="radio" id="outdoors" name="happy" value="outdoors only">
+            <label for="outdoors">Outdoors</label> <br>    
+        </div>
+
+        <h3><b>I may be able to do these free favors for my nearby neighbors:</b></h3>
+
+        <div class="checkbox">
+            <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+            <label for="enableRunning">Errands </label>
+        </div>
+        <div class="radio-input">
+            <input type="radio" id="emergencies" name="erands" value="Quaterly">
+            <label for="emergencies">Emergencies</label> <br>
+            <input type="radio" id="occasional" name="erands" value="ocassional">
+            <label for="occasional">Occasional</label> <br>
+            <input type="radio" id="regular" name="erands" value="regular">
+            <label for="regular">Regular</label> <br>
+        </div>
+
+        <div class="checkbox">
+            <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+            <label for="enableRunning">Rides </label>
+        </div>
+        <div class="radio-input">
+            <input type="radio" id="emergenciesr" name="rides" value="Quaterly">
+            <label for="emergenciesr">Emergencies</label> <br>
+            <input type="radio" id="occasionalr" name="rides" value="ocassional">
+            <label for="occasionalr">Occasional</label> <br>
+            <input type="radio" id="regularr" name="rides" value="regular">
+            <label for="regularr">Regular</label> <br>
+        </div>
+
+        <div class="checkbox">
+            <input id="enableRunning" class="enableRunning" onchange="toggleintrest()" type="checkbox">
+            <label for="enableRunning">Childcare </label>
+        </div>
+        <div class="radio-input">
+            <input type="radio" id="emergenciesc" name="childcare" value="Quaterly">
+            <label for="emergenciesc">Emergencies</label> <br>
+            <input type="radio" id="occasionalc" name="childcare" value="ocassional">
+            <label for="occasionalc">Occasional</label> <br>
+            <input type="radio" id="regularc" name="childcare" value="regular">
+            <label for="regularc">Regular</label> <br>
+        </div>
+
+        <label htmlFor="about">About me</label>
+        <input
+            id="about"
+            type="text"
+            name="about"
+            required={true}
+            placeholder="I like long walks..."
+            value=""
+        />
+
+        <section>
+
+            <label htmlFor="url">Profile Photo</label>
+            <input
+                type="url"
+                name="url"
+                id="url"
+                onChange={handleChange}
+                required={true}
+            />
+            <!---
+            <div className="photo-container">
+                <input type="file" id="photo" name="photo" accept="image/*">
+                <img src={formData.url} alt="profile pic preview"/>
+            </div>-->
+            
+
+        </section>
+
+        <!-- <input type="submit" onclick=""/> -->
+
+        <button class="finall" type="sumbit" onclick="getSimilarUsers()"> 
+          <p >SUBMIT</p>
+      </button>
+    </section>
+
+    
+
+</form>
+</div>
+
+
+
+
+    <h2 class="head">If you have a Connection it will display below</h2>
+
+    <ul id="similarUsers"></ul>
+
+    <script>
+        fetch('/get_users')
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    // Handle the error here, e.g., display "No connections found"
+                    const similarUsersList = document.getElementById("similarUsers");
+                    const noConnectionMessage = document.createElement("p");
+                    noConnectionMessage.textContent = "No connections found.";
+                    similarUsersList.appendChild(noConnectionMessage);
+                    throw new Error('Request failed');
+                }
+            })
+            .then(users => {
+                const similarUsersList = document.getElementById("similarUsers");
+                similarUsersList.innerHTML = "";
+    
+                // Replace this with actual logic to find similar users
+                const currentUser = users[users.length - 1];
+                const similarUsers = [];
+
+                users.forEach(user => {
+
+                    let allConditionsMet = true;
+                    if (user.address === currentUser.address && user.walking === currentUser.walking && user.running === currentUser.running  && user.gardening === currentUser.gardening && user.swim === currentUser.swim && user.tea === currentUser.tea &&  user.like === currentUser.like &&  user.tv === currentUser.tv && user.movie === currentUser.movie && user.shopping === currentUser.shopping && user.happy === currentUser.happy && user.erands === currentUser.erands && user.rides === currentUser.rides && user.childcare === currentUser.childcare  && user.person !== currentUser.person && user.age !== currentUser.age || user.age === currentUser.age  && user.email !== currentUser.email && user.mobile !== currentUser.mobile) {
+                        
+
+                        allConditionsMet = false;
+                    }
+
+                    if(allConditionsMet)
+                    {
+                        const exceptionFields = ["person", "mobile", "email", "address"];
+                        const totalFields = Object.keys(currentUser).length - exceptionFields.length;
+                        let matchingFields = [];
+                        
+                        for (const field in currentUser) {
+                            if (!exceptionFields.includes(field) && user[field] === currentUser[field]) {
+                                matchingFields.push(field);
+                            }
+                        }
+    
+                        const similarityPercentage = (matchingFields.length / totalFields) * 100;
+    
+                        if (similarityPercentage >= 50 && user.person !== currentUser.person) {
+                            similarUsers.push({ user, similarityPercentage, matchingFields });
+                        }
+                    }
+
+                    
+                    });
+    
+                    if (similarUsers.length > 0) {
+                        similarUsers.forEach(entry => {
+                            const user = entry.user;
+                            const similarityPercentage = entry.similarityPercentage;
+                            const matchingFields = entry.matchingFields;
+    
+                            const li = document.createElement("li");
+                            li.textContent = `Person: ${user.person} (Similarity: ${similarityPercentage.toFixed(2)}%)`;
+    
+                            const fieldsDiv = document.createElement("div");
+                            fieldsDiv.textContent = `Matching Fields: ${matchingFields.join(", ")}`;
+                            li.appendChild(fieldsDiv);
+    
+                            const button = document.createElement("button");
+                            button.textContent = "Show Details";
+                            button.classList.add("show-contact-button");
+                            button.addEventListener("click", () => showContact(li, user.mobile, user.email, matchingFields, user.gardening, user.swim, user.tea, user.draw, user.like, user.casual, user.tv, user.movie, user.shopping, user.happy, user.erands, user.rides, user.childcare, user.eldercare, user.petcare, user.tutoring, user.home, user.landscape));
+                            li.appendChild(button);
+    
+                            const contactInfoDiv = document.createElement("div");
+                            contactInfoDiv.style.display = "none";
+                            li.appendChild(contactInfoDiv);
+    
+                            similarUsersList.appendChild(li);
+                        });
+                    } else {
+                        const noConnectionMessage = document.createElement("p");
+                        noConnectionMessage.textContent = "No connections found.";
+                        similarUsersList.appendChild(noConnectionMessage);
+                    }
+                });
+    
+            function showContact(container, mobile, email, matchingFields, gardening, swim, tea, draw, like, casual, tv, movie, shopping, happy, erands, rides, childcare, eldercare, petcare, tutoring, home, landscape) {
+                const contactInfoDiv = container.querySelector("div");
+                if (contactInfoDiv.style.display === "none") {
+                    const matchingFieldsDiv = document.createElement("div");
+                    matchingFieldsDiv.textContent = `Matching Fields: ${matchingFields.join(", ")}`;
+                    const interestsDiv = document.createElement("div");
+                    // interestsDiv.textContent = `Similar Interests: ${getSimilarInterestsString(gardening, swim, tea, draw, like, casual, tv, movie, shopping, happy, erands, rides, childcare, eldercare, petcare, tutoring, home, landscape)}`;
+                    contactInfoDiv.innerHTML = `Mobile: ${mobile}<br>Email: ${email}<br>`;
+                    contactInfoDiv.appendChild(matchingFieldsDiv);
+                    contactInfoDiv.appendChild(interestsDiv);
+                    contactInfoDiv.style.display = "block";
+                } else {
+                    contactInfoDiv.style.display = "none";
+                }
+            }
+    
+            function getSimilarInterestsString(...interests) {
+                const similarInterests = interests.filter(interest => interest === true);
+                return similarInterests.join(", ");
+            }
+
+            function toggleintrest() {
+        const enableRunningCheckbox = document.getElementById("enableRunning");
+        const runningRadioInputs = document.querySelectorAll("input[name='running']");
+
+        if (enableRunningCheckbox.checked) {
+            runningRadioInputs.forEach(input => (input.disabled = false));
+        } else {
+            runningRadioInputs.forEach(input => (input.disabled = true));
+        }
+    }
+
+
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function showPosition(position) {
+        document.getElementById("latitude").value = position.coords.latitude;
+        document.getElementById("longitude").value = position.coords.longitude;
+    }
+
+    function getSimilarUsers() {
+        const latitude = parseFloat(document.getElementById("latitude").value);
+        const longitude = parseFloat(document.getElementById("longitude").value);
+
+        fetch('/get_similar_users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `latitude=${latitude}&longitude=${longitude}`,
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the data to display similar users' information
+            const similarUsersDiv = document.getElementById("similarUsers");
+            similarUsersDiv.innerHTML = ""; // Clear existing content
+
+            data.forEach(user => {
+                const userDiv = document.createElement("div");
+                userDiv.textContent = `Name: ${user.name}, Age: ${user.age}, Email: ${user.email}`;
+                similarUsersDiv.appendChild(userDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching similar users:', error);
+        });
+    }
+
+
+
+
+    function fetchNearbyUsers(latitude, longitude) {
+            fetch('/get_nearby_users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `latitude=${latitude}&longitude=${longitude}`,
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the data to display nearby users' information
+                const nearbyUsersDiv = document.getElementById("nearbyUsers");
+                nearbyUsersDiv.innerHTML = ""; // Clear existing content
+
+                data.forEach(user => {
+                    const userDiv = document.createElement("div");
+                    userDiv.textContent = `Name: ${user.name}, Age: ${user.age}, Email: ${user.email}`;
+                    nearbyUsersDiv.appendChild(userDiv);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching nearby users:', error);
+            });
+        }
+
+        // Event listener for the "Find Nearby Users" button
+        document.getElementById("findNearbyUsers").addEventListener("click", () => {
+            const latitude = parseFloat(document.getElementById("latitude").value);
+            const longitude = parseFloat(document.getElementById("longitude").value);
+
+            // Validate latitude and longitude inputs
+            if (isNaN(latitude) || isNaN(longitude)) {
+                alert("Please enter valid latitude and longitude.");
+            } else {
+                fetchNearbyUsers(latitude, longitude);
+            }
+        });
+
+
+    </script>
+
+</body>
+
+</html>

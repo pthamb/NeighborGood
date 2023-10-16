@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .chat-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        .chat-header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .chat-messages {
+            padding: 10px;
+            overflow-y: scroll;
+            max-height: 300px;
+        }
+
+        .user-message {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin: 5px 0;
+            max-width: 70%;
+        }
+
+        .assistant-message {
+            background-color: #eee;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin: 5px 0;
+            max-width: 70%;
+            align-self: flex-end;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            background-color: #fff;
+            border-top: 1px solid #ccc;
+        }
+
+        input[type="text"] {
+            flex-grow: 2;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            Chat Interface
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+
+        sendButton.addEventListener('click', () => {
+            const userMessage = userInput.value.trim();
+            if (userMessage) {
+                // Add user message to chat
+                const userMessageElement = document.createElement('div');
+                userMessageElement.classList.add('user-message');
+                userMessageElement.textContent = userMessage;
+                chatMessages.appendChild(userMessageElement);
+
+                // Simulate an assistant response (you can replace this with actual responses)
+                const assistantResponse = "This is the assistant's response.";
+                const assistantMessageElement = document.createElement('div');
+                assistantMessageElement.classList.add('assistant-message');
+                assistantMessageElement.textContent = assistantResponse;
+                chatMessages.appendChild(assistantMessageElement);
+
+                // Clear user input
+                userInput.value = '';
+
+                // Scroll to the bottom of the chat messages
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>

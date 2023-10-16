@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+
+    <title>NeighborGood Chat</title>
+</head>
+
+<body>
+    <div id="done">
+    <!--<h1 style="text-align: center;">Message</h1>-->
+    <script type="text/javascript">
+        fetch('/message')
+        $(document).ready(function() {
+            var socket = io.connect("http://192.168.42.106:5000")
+            socket.on(' connect ', function() {
+                socket.send("User connected!");
+            });
+            socket.on('message', function(data){
+                $('#messages').append($('<p>').text(data));
+            });
+    
+            $('#sendBTN').on('click', function(){
+                socket.send( $('#username').val() + ': ' + $('#message').val());
+                $('#message').val('');
+            });
+        })
+    </script>
+    <!--
+        <div id="messages"> 
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="text" id="message" placeholder="Message" required>
+            <button id="sendBTN">Send</button>
+        </div>
+    -->
+
+    <main>
+        <div class="prev_message"></div>
+        <div class="reply"></div>
+        <div class="input">
+        <input type="text" id="message" placeholder="Message" required>
+        <button id="sendBTN">Send</button>
+        </div>
+    </main>
+
+    </div>
+
+
+        
+</body>
+</html>

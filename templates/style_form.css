@@ -1,0 +1,113 @@
+body {
+    background-image: url("background.jpg");
+    /* background-repeat: no-repeat; */
+    background-size: 1600px 900px;
+    /* width: 500px;
+    height: fit-content; */
+}
+
+@media (max-width: 767px) {
+    body {
+        background-size: contain; /* Adjust background size for small screens */
+        /* Additional adjustments for body properties on small screens */
+    }
+}
+
+
+.photo table {
+    border: 2px solid black;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 8px 25px 0px rgba(0, 0, 0, 0.5);
+    opacity: 0.9;
+}
+
+@media (max-width: 767px) {
+    .photo table {
+        /* Adjust styles for small screens */
+        font-size: 14px; /* Example adjustment, change as needed */
+        /* Add any other adjustments you need for small screens */
+    }
+}
+
+
+.photo th.demo {
+    text-align: center;
+    background-color: #0ba115;
+    font-size: 30px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+@media (max-width: 767px) {
+    .photo th.demo {
+        font-size: 20px; /* Example adjustment, change as needed */
+        /* Add any other adjustments you need for small screens */
+    }
+}
+
+.photo th.small{
+    text-align: center;
+    background-color: #0ba115;
+    font-size: 20px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+
+form.us {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+@media (max-width: 767px) {
+    form.us {
+        max-width: 100%; /* Adjust as needed */
+        padding: 10px; /* Adjust as needed */
+        /* Add any other adjustments you need for small screens */
+    }
+}
+
+
+.us label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+@media (max-width: 767px) {
+    .us label {
+        font-size: 16px; /* Adjust as needed */
+        /* Add any other adjustments you need for small screens */
+    }
+}
+
+
+.us input[type="file"] {
+    display: block;
+    margin-bottom: 15px;
+    }
+
+
+.us button {
+padding: 10px 15px;
+background-color: #007bff;
+border: none;
+color: white;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.us button:hover {
+background-color: #0056b3;
+}
+
+.similarUsers{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0ba115;
+}
